@@ -36,3 +36,17 @@ def Amount_of_bank(total_amount,B_Stock):
         print("Total Amount Of bank is :", total_amount)
         print("Total Account Stock is :", B_Stock)
             
+def Amount_of_bank(total_amount,B_Stock):
+        print("Total Amount Of bank is :", total_amount)
+        print("Total Account Stock is :", B_Stock)
+        
+def Withdraw_Customer_balance(C_Account_no_,C_acc_Amount):
+        print("Your Account Number is :",C_Account_no_)  
+        print("Your Balance is ",C_acc_Amount)     
+         
+def Deposit_Customer_Balance(C_acc_Amount,C_Account_no_):
+        print("Your Account Number is :",C_Account_no_)
+        print("Your Balance is :",C_acc_Amount)    
+        
+def Show_balance(balance):
+        print("My bank balance is :", balance)           

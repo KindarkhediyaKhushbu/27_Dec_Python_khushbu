@@ -1,0 +1,1 @@
+{'Customer': {'name': 'khushbu', 'Password': 'khushi009', 'Concactno': 98725848599, 'Address': 'fulrama', 'Accountno': 123, 'Account_Type': 'saving', 'Account_amount': 500}}
