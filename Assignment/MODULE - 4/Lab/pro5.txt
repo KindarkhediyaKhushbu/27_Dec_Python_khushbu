@@ -1,0 +1,12 @@
+ Python django vitural environment step :
+
+ -- > python --version 
+ -- > pip install vituralenv
+ -- > mkdir my_django project
+ -- > my django_project
+ -- > myenv\scripts\Activate (Activate myenv)
+ -- > pip install django
+ -- > django-admin startproject projectname (django project start)
+ -- > cd projectname (project directory folder)
+ -- > code . (open in vscode)
+ -- >  python manage.py runserver (runserver)

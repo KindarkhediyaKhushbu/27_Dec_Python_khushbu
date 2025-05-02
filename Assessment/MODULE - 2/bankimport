@@ -1,204 +1,183 @@
-import Bank as Ba
+import Bank as am
 from Bank import *
-Registrationformation = {}
 
-C_username=[]
-C_password = []
-C_contactNo = []
-C_Address = [] 
-C_Account_no= []
-C_Account_Type =[]
-C_account_Amount = []
-C_roll =[]
-        
+RegistrationInformation = {}
+AccountStock = {}
+
+# Customer information lists
+customers = {
+    "username": [],
+    "password": [],
+    "contactNo": [],
+    "address": [],
+    "accountNo": [],
+    "accountType": [],
+    "accountAmount": [],
+    "role": []
+}
+
+# Main loop for user role selection
 while True:
-    print("1. REGISTER")
-    print("2. LOGIN")
-    print("3. UPDATE ALL CUSTOMER")
-    print("4. VIEW ALL CUSTOMER")
-    print("5. DELETE ALL CUSTOMER")
-    print("6. EXIT")
+    print("""
+      Choose Your Role
+                1). Bank Manager
+                2). Customer 
+                3). Exit
+    """)
     
-    choice = int(input("Enter chose number(1-6) : "))
+    choice = int(input("Enter your chosen number (1-3): "))
     
     if choice == 1:
-        print("-------WELCOME TO REGISTER---------")
-        
-        class Registration:
-                
-            def getdata(self):
-                self.username = input("Enter Your Username : ")
-                self.password = input("Enter Your Password : ")
-                self.contactNo = int(input("Enter Your Contact.No : "))
-                self.address = input("Enter Your Address : ")
-                self.accountno = int(input("Enter Your Account_no : "))
-                self.account_type = input("Enter Your Account_Type : ")
-                self.account_amount = int(input("Enter Your Account_Amount : "))
-                self.roll = input("Enter your roll Banker Or Customer : ")
-                
-                
-            def list_in_data(self):
-                C_username.append(self.username)
-                print(self.username)
-                
-                C_password.append(self.password)
-                print(self.password)
-                
-                C_contactNo.append(self.contactNo)
-                print(self.contactNo)
-                
-                C_Address.append(self.address)
-                print(self.address)
-                
-                C_Account_no.append(self.accountno)
-                print(self.accountno)
-                
-                C_Account_Type.append(self.account_type)
-                print(self.account_type)
-                
-                C_account_Amount.append(self.account_amount)
-                print(self.account_amount)
-                
-                C_roll.append(self.roll)
-                print(self.roll)
-           
-            def printdata(self):
-                print(" Name Is : ",self.username)
-                print("Password Is : ",self.password)
-                print("Concact Number Is : ",self.contactNo)
-                print("Address Is : ",self.address)
-                print("Account_No Is : ",self.accountno)
-                print("Account_Type Is : ",self.account_type)
-                print("Account Amount Is : ",C_account_Amount)
-                print("Your roll is : ",self.roll)
+        while True:
+            print("""
+            1. REGISTER
+            2. LOGIN
+            3. UPDATE ALL CUSTOMERS
+            4. VIEW ALL CUSTOMERS
+            5. DELETE A CUSTOMER
+            6. EXIT
+            """)
             
-            def save_register(self):
-                Ba.ragister_Customer(self.username, self.password, self.contactNo, self.address, self.accountno, self.account_type,self.account_amount, self.roll )
-                Registrationformation[self.roll] = {"name": self.username, "Password": self.password,"Concactno": self.contactNo, "Address": self.address, "Accountno": self.accountno, "Account_Type": self.account_type, "Account_amount": self.account_amount}
-                print(Registrationformation)
-                print("Registration Successfully Done")
+            action = int(input("Enter your chosen number (1-6): "))
+            
+            if action == 1:
+                print("------- WELCOME TO REGISTER ---------")
                 
-            def file_saving(self):
-                if self.roll == "Customer":        
-                    file = open('Customer_Register.txt', 'a')
-                    file.write(str(Registrationformation) + "\n")
-                    file.close()
-                    print("------ REGISTRATION SUCCESSFULLY FOR CUSTOMER------")
-                    
-                elif self.roll == "Banker":
-                    file = open('Banker_Register.txt', 'a')
-                    file.write(str(Registrationformation) + "\n")
-                    file.close()
-                    print("------ REGISTRATION SUCCESSFULLY FOR Banker------")
-                    
-                else:
-                    print("Invalid Input!")
-                    
-        re = Registration()
-        re.getdata()
-        re.list_in_data()
-        re.printdata()  
-        re.save_register()
-        re.file_saving()
+                class Registration:
+                    def get_data(self):
+                        self.username = input("Enter Your Username: ")
+                        self.password = input("Enter Your Password: ")
+                        self.contactNo = input("Enter Your Contact No: ")
+                        self.address = input("Enter Your Address: ")
+                        self.accountNo = input("Enter Your Account No: ")
+                        self.accountType = input("Enter Your Account Type: ")
+                        self.accountAmount = input("Enter Your Account Amount: ")
+                        self.role = input("Enter your role (Banker or Customer): ")
+                        
+                    def save_registration(self):
+                        RegistrationInformation[self.username] = {
+                            "Password": self.password,
+                            "Contact No": self.contactNo,
+                            "Address": self.address,
+                            "Account No": self.accountNo,
+                            "Account Type": self.accountType,
+                            "Account Amount": self.accountAmount,
+                            "Role": self.role
+                        }
+                        print("Registration Successful")
         
-        
-    elif choice == 2:
-        print("__ WELCOME TO LOGIN PAGE __\n")
+                    def file_saving(self):
+                        filename = f"{self.role.capitalize()}_Register.txt"
+                        with open(filename, 'a') as file:
+                            file.write(str(RegistrationInformation[self.username]) + "\n")
+                        print(f"------ REGISTRATION SUCCESSFULLY FOR {self.role.upper()} ------")
+                
+                reg = Registration()
+                reg.get_data()
+                reg.save_registration()
+                reg.file_saving()
+                
+            elif action == 2:
+                print("__ WELCOME TO LOGIN PAGE __")
+                
+                class Login:
+                    def customer_login(self):
+                        password = input("Enter Password: ")
+                        account_no = input("Enter Account Number: ")
+                        role = input("Enter Role (Manager or Customer): ").lower()
 
-        class Login(Registration):
-            def Customer_can_login(self):
-                username = (input("Enter Username : "))
-                password = input("Enter Password : ")
-                accountno = int(input("Enter Account number : "))
-                roll = int(input("Enter Roll No Manager OR Customer"))
+                        file_name = f"{role.capitalize()}_Register.txt"
+                        try:
+                            with open(file_name, 'r') as file:
+                                for line in file:
+                                    data = eval(line.strip())
+                                    if data["Password"] == password and data["Account No"] == account_no:
+                                        print(f"Login Successfully Done As {role.capitalize()}")
+                                        return
+                                print(f"Invalid {role.capitalize()}")
+                        except FileNotFoundError:
+                            print(f"{role.capitalize()} register file not found.")
                 
+                login = Login()
+                login.customer_login()
                 
-                if roll == "Customer":
-                    with open ("coustomer_register",'r'):
-                        if username in Customer_register.txt and password in Customer_register.txt and accountno in Customer_register.txt:
-                            print("Login Successfully Done As Customer")
-                            print("__ WELCOME TO CUSTOMER PAGE __")
-                            Ba.login_Customer(username, password, accountno,roll)
-                        else:
-                            print("Invalid Cutomer")
+            elif action == 3:  # Update All Customers
+                class UpdateCustomer:
+                    def update(self):
+                        username = input("Enter the Username of the Customer to Update: ")
+                        if username in RegistrationInformation:
+                            print("Current Data:", RegistrationInformation[username])
+                            new_username = input("Enter Usename : ")
+                            new_password = input("New Password : ")
+                            new_contact_no = input("New Contact No: ")
+                            new_address = input("New Address : ")
+                            new_account_no = input("New Account No : ")
+                            new_account_type = input("New Account Type : ")
+                            new_account_amount = input("New Account Amount : ")
                             
-                            
-                elif roll == "Banker":
-                    with open ("Banker_register.txt",'r'):
-                        if username in Banker_register.txt and password in Banker_register.txt and accountno in Banker_register.txt:
-                            print("Login Successfully Done As Manager")
-                            print("__ WELCOME TO MANAGER PAGE __")
-                            Ba.login_Customer(username, password, accountno,roll)
+                            if new_password:
+                                RegistrationInformation[username]["Usename"] = new_username
+                            if new_password:
+                                RegistrationInformation[username]["Password"] = new_password
+                            if new_contact_no:
+                                RegistrationInformation[username]["Contact No"] = new_contact_no
+                            if new_address:
+                                RegistrationInformation[username]["Address"] = new_address
+                            if new_account_no:
+                                RegistrationInformation[username]["Account No"] = new_account_no
+                            if new_account_type:
+                                RegistrationInformation[username]["Account Type"] = new_account_type
+                            if new_account_amount:
+                                RegistrationInformation[username]["Account Amount"] = new_account_amount
+
+                            with open("Customer_Register.txt", 'w') as file:
+                                for customer in RegistrationInformation.values():
+                                    file.write(str(customer) + "\n")
+
+                            print("Customer data updated successfully.")
                         else:
-                            print("Invalid Banker")
-                else:
-                    print("Invalid Roll")
-                    
-                    
-        lg = Login()
-        lg.Customer_can_login()
-        
-        
-        
+                            print("Customer not found.")
+
+                updater = UpdateCustomer()
+                updater.update()
+                
+            elif action == 4:  # View All Customers
+                class ViewCustomer:
+                    def view(self):     
+                        print("=== View All Customers ===")
+                        try:
+                            with open("Customer_Register.txt", 'r') as file:
+                                for line in file:
+                                    data = eval(line.strip())
+                                    print(data)
+                        except FileNotFoundError:
+                            print("Customer register file not found.")
+
+                viewer = ViewCustomer()
+                viewer.view()
+                            
+            elif action == 5:  # Delete a Customer
+                class DeleteCustomer:
+                    def delete(self):
+                        username = input("Enter the Username of the Customer to Delete: ")
+                        if username in RegistrationInformation:
+                            del RegistrationInformation[username]
+                            print(f"Customer {username} deleted successfully.")
+                            
+                            with open("Customer_Register.txt", 'w') as file:
+                                for customer in RegistrationInformation.values():
+                                    file.write(str(customer) + "\n")
+                            print("Customer file updated.")
+                        else:
+                            print("Customer not found.")
+                
+                deleter = DeleteCustomer()
+                deleter.delete()     
+            
+            elif action == 6:
+                print("Exiting...")
+                break
         
     elif choice == 3:
-        print("---- WELCOME TO CUSTOMER UPDATE PAGE-----")
-        
-        class UpdateCustomer(Registration):
-            print("..... UPDATE CUSTOMER .....")
-            def customer_upadate(self):
-                
-                username = input("Enter Your Username : ")
-                password = input("Enter Your Password : ")
-                contactNo = int(input("Enter Your Contact.No : "))
-                address = input("Enter Your Address : ")
-                accountno = int(input("Enter Your Account_no : "))
-                account_type = input("Enter Your Account_Type : ")
-                account_amount = int(input("Enter Your Account_Amount : "))
-                roll = input("Enter your roll Banker Or Customer : ")
-                
-
-                if username in Registrationformation and password in Registrationformation and contactNo in Registrationformation and address in Registrationformation and accountno in Registrationformation and account_type in Registrationformation and account_amount in Registrationformation and roll in Registrationformation:
-                     print(Registrationformation)
-                     
-                     username = input(f"Enter new Cutomer name : {username}")
-                     password = input(f"Enter new customer password : {password}")
-                     contactNo = int(input(f"Enter new customer contactno {contactNo}"))
-                     address = input(f"Enter new cutomer address : {address}")
-                     accountno = int(input(f"Enter new Cutomer account no : {accountno}"))
-                     account_type = input(f"Enter new customer account_type: {account_type}")
-                     account_amount = int(input(f"Enter new customer accoun_amount : {account_amount}"))
-                     roll = input(f"Enter new customer roll Banker OR Customer : {roll}")   
-                     Registrationformation[username] = {"Username": username, "Password": password, "Contact_no": contactNo, "Address": address, "Account_no": accountno, "Account_Type": account_type, "Account_Amount": account_amount, "Roll is":roll}
-                     print(Registrationformation)
-
-        up = UpdateCustomer()
-        up.customer_upadate()             
-          
-    elif choice == 4:
-        
-        class UpdateCustomer(Login):
-            def update_customer(self):
-                
-                username = input("Enter your username : ")
-                password = input("Enter Your Password : ")
-                address = input("Enter your Username : ")
-                accountno = int("Enter Your Account_number : ")
-                account_type = input("Enter Your  Account_type : ")
-                account_amount = input("Enter your Account_Amount : ")
-                roll = input("Enter your Roll Banker OR Customer : ")
-                
-                with open('Registration.txt', 'w') as file:
-                    for customer in Registration.values():
-                        file.write(str(customer) + "\n")
-
-                        if username in Registration.txt and password in Registration.txt and address in Registration.txt and accountno in Registration.txt and account_type in Registration.txt and account_amount in Registration.txt:
-                            print("---UPDATE SUCCESSFULLY ---")
-                            print("__ WELCOME TO CUSTOMER PAGE __")
-                            Ba.login_Customer(username, password, accountno,roll)
-                        else:
-                            print("Invalid Item!")
-        
-        
-        
-          
+        print("Exiting the application...")
+        break

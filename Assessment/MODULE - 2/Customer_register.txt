@@ -1,1 +1,0 @@
-{'Customer': {'name': 'khushbu', 'Password': 'khushi009', 'Concactno': 87486, 'Address': 'njkfc', 'Accountno': 123, 'Account_Type': 'hbfewhj', 'Account_amount': 600}}

@@ -1,0 +1,30 @@
+To create a Django project commnad:
+
+    -- > django-admin startproject myproject
+    -- >cd myproject
+    --> directory structure.
+            myproject/
+            manage.py
+                myproject/
+                __init__.py
+                settings.py
+                urls.py
+                asgi.py
+                wsgi.py
+
+
+manage.py: A command-line utility for project management (e.g., running the server, migrations).
+myproject/: The project's package directory.
+
+__init__.py: An empty file that tells Python this directory should be considered a Python package.
+
+settings.py: Configuration file for the project (e.g., database settings, installed apps).
+
+urls.py: URL declarations for the project, mapping URLs to views.
+
+asgi.py: Asynchronous Server Gateway Interface entry point for deploying with ASGI servers.
+
+wsgi.py: Web Server Gateway Interface entry point for deploying with WSGI servers.
+
+-- > To run the development server
+        -- python manage.py runserver

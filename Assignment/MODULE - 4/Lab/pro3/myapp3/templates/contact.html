@@ -1,0 +1,21 @@
+<!-- formapp/templates/formapp/contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="static/form_validation.js"></script>
+</head>
+<body>
+    {% csrf_token %}
+    <h1>Contact Us</h1>
+    <form method="POST" id="contact-form">
+       
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <p id="form-error" style="color: red; display: none;">Please fill out all fields correctly!</p>
+</body>
+</html>
