@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hospital Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e0f7fa;
+      background: url(https://i.pinimg.com/736x/5f/8d/12/5f8d12fd83f0606e6cd15245ed23d861.jpg);
+      padding: 40px;
+    }
+
+    .form-box {
+      max-width: 450px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00796b;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #00796b;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    .link {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .link a {
+      color: #00796b;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Patient Registration</h2>
+
+  <form method="post" action="#">
+    {% csrf_token %}
+    <label>Full Name</label>
+    <input type="text" name="full_name" required>
+
+    <label>Age</label>
+    <input type="number" name="age" required>
+
+    <label>Gender</label>
+    <select name="gender" required>
+      <option value="">--Select--</option>
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+
+    <label>Phone Number</label>
+    <input type="tel" name="phone" required>
+
+    <label>Email</label>
+    <input type="email" name="email">
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <label>Address</label>
+    <textarea rows="3" name="address" required></textarea>
+
+    <button type="submit">Register</button>
+
+    <div class="link">
+      <p>Already registered? <a href="/login">Login here</a></p>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

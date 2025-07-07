@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hospital Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f8e9;
+      background: url(https://static.vecteezy.com/system/resources/thumbnails/006/712/955/small/abstract-health-medical-science-consist-doctor-digital-wireframe-concept-modern-medical-technology-treatment-medicine-on-gray-background-for-template-web-design-or-presentation-vector.jpg);
+
+      padding: 40px;
+    }
+
+    .form-box {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #33691e;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #33691e;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #1b5e20;
+    }
+
+    .link {
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Patient Login</h2>
+  
+  {% if msg %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>{{msg}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <label>Email / Username</label>
+    <input type="email" name="email" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Login</button>
+    <div class="link">
+      <p>Don't have an account? <a href="/register">Register here</a></p>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
