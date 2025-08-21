@@ -1,0 +1,2 @@
+##### Understanding project requirements.
+- Understanding project requirements means clearly identifying and documenting what a project needs to achieve — including its goals, features, constraints, and user expectations — so developers and stakeholders share the same vision before starting development.

@@ -1,0 +1,2 @@
+##### What is Serialization?
+- Serialization is the process of converting complex data (like objects, models, or querysets) into a format that can be easily stored, transferred, or shared — usually JSON, XML, or CSV.
